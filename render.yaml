@@ -18,6 +18,8 @@ services:
         sync: false
       - key: OPENROUTER_MODEL
         value: openai/gpt-4o
+      - key: NODE_VERSION
+        value: "20"
 
   # Frontend Static Site
   - type: web
@@ -29,5 +31,10 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: NODE_VERSION
+        value: "20"
       - key: VITE_API_URL
-        value: ${ai-fsd-backend.RENDER_EXTERNAL_URL}/api
+        fromService:
+          type: web
+          name: ai-fsd-backend
+          envVarKey: RENDER_EXTERNAL_URL

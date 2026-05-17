@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+// Ensure we don't end up with /api/api if the env var already includes it
+const API_URL = baseUrl.endsWith('/api') ? baseUrl : `${baseUrl}/api`;
 
 export const candidateApi = {
   addCandidate: async (candidateData) => {
