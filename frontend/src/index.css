@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-gray-200 antialiased min-h-screen relative overflow-x-hidden;
+  }
+  
+  /* Adds a subtle animated grid background */
+  body::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: 
+      linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -1;
+    pointer-events: none;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-surface backdrop-blur-glass border border-white/10 rounded-2xl shadow-glass p-6 transition-all duration-300;
+  }
+  
+  .glass-card:hover {
+    @apply border-primary/30 shadow-neon-primary;
+  }
+
+  .neon-button {
+    @apply relative px-6 py-2 bg-transparent text-primary font-bold tracking-wider uppercase 
+           border border-primary rounded hover:bg-primary/10 hover:shadow-neon-primary 
+           transition-all duration-300 overflow-hidden;
+  }
+  
+  .neon-input {
+    @apply w-full bg-black/30 border border-white/20 rounded-lg px-4 py-3 text-white
+           focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,240,255,0.3)]
+           transition-all duration-300 placeholder-gray-500;
+  }
+}
